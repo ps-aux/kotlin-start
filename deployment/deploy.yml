@@ -1,0 +1,50 @@
+---
+- hosts: all
+  vars:
+    dir_path: /opt/unreal-scrapper
+    service_name: unreal-scrapper
+    app_name: unreal-scrapper
+    artifact_name: unreal-scrapper-assembly-0.1.jar
+    app_port: 8100
+    debug_port: 5005
+
+  tasks:
+  - name: create the destination folder
+    file: path='{{dir_path}}' state=directory
+
+  - name: dbg info
+    debug: msg='src is -- {{artifact_path}}/{{artifact_name}}'
+
+  - name: copy to the destination folder
+    copy: src='{{artifact_path}}/{{artifact_name}}' dest='{{dir_path}}/{{app_name}}.jar'
+
+
+  - name: create systemd service file
+    template:
+      src: systemd-service.j2
+      dest: '/etc/systemd/system/{{service_name}}.service'
+
+  - name: daemon-reload & restart systemd service
+    systemd:
+      state: restarted
+      daemon_reload: yes
+      name: '{{service_name}}'
+      enabled: True
+
+    #TODO remove when reverse proxy is deployed
+  - name: open port
+    firewalld:
+      zone: public
+      port: '{{app_port}}/tcp'
+      state: enabled
+      permanent: true
+      immediate: true
+
+  - name: open debug port
+    firewalld:
+      zone: public
+      port: '{{debug_port}}/tcp'
+      state: enabled
+      permanent: true
+      immediate: true
+

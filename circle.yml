@@ -1,0 +1,11 @@
+compile:
+  override:
+    - sbt clean stage
+
+general:
+  artifacts:
+    - "build/libs/unreal-scrapper-0.0.1-SNAPSHOT.jar"
+
+notify:
+  webhooks:
+    - url: http://ci.absolutne.pro:3100/ci-hooks/circle-ci

@@ -1,0 +1,16 @@
+[Unit]
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -jar {{dir_path}}/{{app_name}}.jar
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{service_name}}
+#TODO remove later
+EnvironmentFile=/etc/env/phantomjs
+EnvironmentFile=/etc/env/db
+
+
+[Install]
+WantedBy=default.target
