@@ -6,7 +6,7 @@ import javax.persistence.*
 //@Table(name = "record")
 @Entity
 data class RealEstateOffer(
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
         val id: Long? = null,
         val title: String,
         val url: String,

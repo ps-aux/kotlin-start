@@ -1,7 +1,6 @@
 package pro.absolutne.scrap
 
 import pro.absolutne.data.RealEstateOffer
-import pro.absolutne.data.RealEstateOfferJ
 import pro.absolutne.data.RealEstateOfferRepository
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,7 +27,7 @@ class TopRealityScrapJob(private val b: Browser,
             page.findAll(".estate")
                     .map { extractRecord(it) } //TODO without (it) ?
                     .filterNotNull()
-//                    .forEach { process(it) }
+                    .forEach { process(it) }
 
             b.find(paginator).click()
             pageNo += 1
@@ -37,7 +36,7 @@ class TopRealityScrapJob(private val b: Browser,
 
     }
 
-    private fun process(r: RealEstateOfferJ) = repo.save(r)
+    private fun process(r: RealEstateOffer) = repo.save(r)
 
     private fun extractRecord(el: BrowserElement): RealEstateOffer? {
 

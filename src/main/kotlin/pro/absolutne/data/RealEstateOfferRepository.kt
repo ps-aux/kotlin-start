@@ -5,9 +5,9 @@ import org.springframework.stereotype.Repository
 import javax.transaction.Transactional
 
 @Repository
-interface RealEstateOfferRepository : CrudRepository<RealEstateOfferJ, Long> {
+interface RealEstateOfferRepository : CrudRepository<RealEstateOffer, Long> {
 
     @Transactional
-    override fun <S : RealEstateOfferJ?> save(entity: S): S
+    override fun <S : RealEstateOffer?> save(entity: S): S
 }
 
