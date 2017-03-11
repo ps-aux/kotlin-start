@@ -3,9 +3,9 @@
 #    - ./gradlew clean build
 
 # Try to fix 'no tests' problem
-test:
-  override:
-    - ./gradlew test
+#test:
+#  override:
+#    - ./gradlew test
 
 general:
   artifacts:
