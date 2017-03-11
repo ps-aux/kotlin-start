@@ -1,6 +1,6 @@
 compile:
   override:
-    - gradle clean build
+    - ./gradlew clean build
 
 # Try to fix 'no tests' problem
 #test:
