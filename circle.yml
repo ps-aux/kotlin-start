@@ -1,11 +1,11 @@
-compile:
-  override:
-    - ./gradlew build
-
-# Try to fix 'no tests' problem
-test:
-  override:
-    - /bin/true
+#compile:
+#  override:
+#    - ./gradlew clean build
+#
+## Try to fix 'no tests' problem
+#test:
+#  override:
+#    - /bin/true
 
 general:
   artifacts:
