@@ -1,12 +1,10 @@
 package pro.absolutne
 
-import JavaTest
 import org.openqa.selenium.chrome.ChromeDriver
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
 import pro.absolutne.data.RealEstateOffer
-import pro.absolutne.data.RealEstateOfferJ
 import pro.absolutne.data.RealEstateOfferRepository
 import pro.absolutne.scrap.*
 import java.util.*
@@ -15,24 +13,14 @@ import javax.transaction.Transactional
 @RestController
 class MyController(val repo: RealEstateOfferRepository) {
 
-    var t = JavaTest()
-
     @GetMapping("/go")
     fun go() = "Yeah it works"
 
-    @GetMapping("/java")
-    fun test() = t.go()
+    @GetMapping("/foo")
+    fun foo() = "This is foo()"
 
     @GetMapping("/rec")
     fun rec() = repo.findAll().iterator().next()
-
-    @GetMapping("/lombok")
-    fun lombok(): Any {
-        val l = RealEstateOfferJ()
-//        l.setName("jano")
-
-        return l
-    }
 
     @GetMapping("/jpa")
     fun readJpa(): Any {
